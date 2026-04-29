@@ -209,6 +209,33 @@ $(eval $(call translation,hongkong,HongKong Chinese))
 $(eval $(call translation,taiwan,Taiwan Chinese))
 
 
+### Collections ###
+define collection
+  define Package/luci$(if $(1),-$(1))
+    SECTION:=luci
+    CATEGORY:=LuCI
+    TITLE:=LuCI - Lua Configuration Interface
+    URL:=http://luci.subsignal.org/
+    MAINTAINER:=LuCI Development Team <luci@lists.subsignal.org>
+    SUBMENU:=1. Collections
+    TITLE:=$(if $(2),$(2),LuCI $(if $(1),$(1),general) collection)
+    $(if $(3),DEPENDS:=$(3))
+  endef
+
+  define Package/luci$(if $(1),-$(1))/install
+	true
+  endef
+
+  LUCI_BUILD_PACKAGES += luci$(if $(1),-$(1))
+endef
+
+$(eval $(call collection,,\
+	Standard OpenWrt set including full admin with ppp support and the \
+	default OpenWrt theme,\
+	+uhttpd +luci-mod-admin-base +luci-mod-admin-CN-common +luci-theme-openwrt \
+	+luci-app-firewall +luci-proto-core +luci-proto-ppp +libiwinfo-lua))
+
+
 include $(INCLUDE_DIR)/package.mk
 
 $(foreach b,$(LUCI_BUILD_PACKAGES),$(eval $(call BuildPackage,$(b))))

@@ -106,6 +106,7 @@ endef
 $(eval $(call module,admin-CN-common,LuCI Administration - common chinese -featured for full control,+luci-mod-admin-core +luci-lib-ipkg +luci-mod-admin-base))
 $(eval $(call module,admin-base,LuCI Administration - base-featured for full control,+luci-mod-admin-core +luci-lib-ipkg))
 $(eval $(call module,admin-core,Web UI Core module,+luci-lib-web +luci-proto-core))
+$(eval $(call module,func-anti_attack,Interfaces for anti dos/scan attack,+luci-mod-admin-core))
 
 
 ### Applications ###

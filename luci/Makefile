@@ -54,9 +54,11 @@ endef
 
 $(eval $(call library,ipkg,LuCI IPKG/OPKG call abstraction library))
 $(eval $(call library,json,LuCI JSON library))
+$(eval $(call library,lua-cjson,Lua CJSON library,+liblua))
 $(eval $(call library,nixio,NIXIO POSIX library,+PACKAGE_luci-lib-nixio_openssl:libopenssl +PACKAGE_luci-lib-nixio_cyassl:libcyassl))
 $(eval $(call library,sys,LuCI Linux/POSIX system library))
-$(eval $(call library,web,MVC Webframework,+luci-lib-sys +luci-lib-nixio +luci-lib-core +luci-sgi-cgi))
+$(eval $(call library,web,MVC Webframework,+luci-lib-sys +luci-lib-nixio +luci-sgi-cgi))
+$(eval $(call library,xiaoqiang,XiaoQiang util,+lua-curl-v3 +libstdcpp +luci-lib-core +luci-lib-json +liblua))
 
 
 ### Protocols ###
@@ -106,7 +108,10 @@ endef
 $(eval $(call module,admin-CN-common,LuCI Administration - common chinese -featured for full control,+luci-mod-admin-core +luci-lib-ipkg +luci-mod-admin-base))
 $(eval $(call module,admin-base,LuCI Administration - base-featured for full control,+luci-mod-admin-core +luci-lib-ipkg))
 $(eval $(call module,admin-core,Web UI Core module,+luci-lib-web +luci-proto-core))
+$(eval $(call module,admin-diagnosis,LuCI Administration - diagnosis-featured for web control,+luci-mod-admin-core +luci-lib-ipkg))
 $(eval $(call module,func-anti_attack,Interfaces for anti dos/scan attack,+luci-mod-admin-core))
+$(eval $(call module,func-mipctl,Error page for access intercepted by miparentalctl,+luci-mod-admin-core))
+$(eval $(call module,product-retails,LuCI Administration - Retail products -featured for full control,+luci-mod-admin-core +luci-lib-ipkg))
 
 
 ### Applications ###
@@ -179,6 +184,7 @@ endef
 
 $(eval $(call theme,base,Common base for all themes))
 $(eval $(call theme,openwrt,OpenWrt.org (default),,,1))
+$(eval $(call theme,web,Afei Web Theme))
 
 
 ### Translations ###
